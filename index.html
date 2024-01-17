@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Box</title>
+  <style>
+    /* Basic styling for the search box */
+    #search-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+    }
+
+    #search-box {
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    #search-button {
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="search-container">
+    <input type="text" id="search-box" placeholder="Search...">
+    <button id="search-button" onclick="search()">Search</button>
+  </div>
+
+  <script>
+    function search() {
+      // Replace this function with your actual search logic
+      var searchTerm = document.getElementById('search-box').value;
+      alert('You searched for: ' + searchTerm);
+    }
+  </script>
+
+</body>
+</html>
