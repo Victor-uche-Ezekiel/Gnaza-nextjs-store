@@ -78,7 +78,7 @@ const Navigation = (props: Props) => {
                 // onMouseEnter={() => setShowAccount(true)}
                 // onMouseLeave={() => setShowAccount(false)}
               >
-                account
+                Account
               </span>
             </div>
 
