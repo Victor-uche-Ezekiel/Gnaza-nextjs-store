@@ -1,3 +1,4 @@
+import ExampleComponent from "@/components/GetHeight";
 import React from "react";
 
 type Props = {};
@@ -5,6 +6,7 @@ type Props = {};
 function ThankYou({}: Props) {
   return (
     <div className="min-h-[100vh] w-full flex justify-center items-center">
+      <ExampleComponent />
       <div className="mb text-center p-[2rem] rounded-[8px] shadow-[0_0_10px_rgba(0,_0,_0,_0.1)] bg-[#fff] max-w-[50rem] mx-auto">
         <h1 className="text-clr1 text-[clamp(2.5rem,_1rem_+_4.8vw,_3.5rem)] mb-[2rem]">
           Thank You!

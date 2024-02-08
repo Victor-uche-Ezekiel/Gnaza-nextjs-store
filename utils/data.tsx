@@ -1,40 +1,8 @@
 import React from "react";
 
 import { IoPersonOutline } from "react-icons/io5";
-import { UserTypes } from "@/app/lib/types";
-import { LiaHomeSolid } from "react-icons/lia";
-import { PiAppStoreLogo } from "react-icons/pi";
-import { LiaInfoSolid } from "react-icons/lia";
-import { IoIosArrowDown } from "react-icons/io";
 import { FiHeart } from "react-icons/fi";
 import { LuPackage2 } from "react-icons/lu";
-
-const pages = [
-  {
-    link: "/",
-    linkText: "home",
-    pageIcon: <LiaHomeSolid />,
-    id: 1,
-  },
-  { link: "/store", linkText: "products", pageIcon: <PiAppStoreLogo />, id: 2 },
-  { link: "/about", linkText: "about", pageIcon: <LiaInfoSolid />, id: 3 },
-];
-
-const userSignUp: Array<UserTypes> = [
-  {
-    linkText: "account",
-    linkIcon: <IoPersonOutline />,
-    id: 1,
-    link: "./login",
-  },
-
-  // {
-  //   linkText: "Registar",
-  //   // linkIcon: <IoPersonOutline />,
-  //   id: 2,
-  //   link: "./signup",
-  // },
-];
 
 const products = [
   {
@@ -103,15 +71,8 @@ const accountSection1 = [
 ];
 
 const accountSection2 = [
-  { title: "account management", link: "/customer/manage-account" },
+  { title: "account management", link: "/customer/manageaccount" },
   { title: "address book", link: "/customer/address" },
 ];
 
-export {
-  pages,
-  userSignUp,
-  products,
-  fSections,
-  accountSection1,
-  accountSection2,
-};
+export { products, fSections, accountSection1, accountSection2 };

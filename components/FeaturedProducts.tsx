@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { products } from "@/utils/data";
 
 import Product from "./Product";
 import { cn } from "./helpers";
-import { client } from "@/app/lib/sanity";
-import { SingleProduct } from "@/app/lib/types";
+import { SingleProduct } from "@/libs/types";
+import { resolve } from "path";
 
 type Props = {
   fProductsText: string;
@@ -12,15 +12,19 @@ type Props = {
   pclassName?: string;
 };
 
-const fetchAllProducts = async () => {
-  const query = `*[featuredProduct == 'featured'] {
-  productImage,title,price,slug
-}
-  `;
+const fetchFeaturedProducts = async () => {
+  try {
+    const res = await fetch(`http://localhost:3000/api/featuredProducts`, {
+      // cache: "no-store",
+    });
 
-  const data = await client.fetch(query);
-
-  return data;
+    if (!res.ok) {
+      throw new Error("failed to fetch data");
+    }
+    return res.json();
+  } catch (error) {
+    console.log("error", error);
+  }
 };
 
 const FeaturedProducts = async ({
@@ -28,25 +32,29 @@ const FeaturedProducts = async ({
   className,
   pclassName,
 }: Props) => {
-  const allProducts: SingleProduct[] = await fetchAllProducts();
+  const allProducts: SingleProduct[] = await fetchFeaturedProducts();
+
   return (
     <div className={`${cn("mb", pclassName)}`}>
       <h1 className="sub__section">{fProductsText}</h1>
 
       <div className={`${cn("scenter2 prXl:gap-[2rem]", className)}`}>
-        {allProducts.map((product, id) => {
-          const { title, slug, productImage, price } = product;
+        {allProducts.map((product) => {
+          const { productName, _id, productImage, price } = product;
+
           return (
-            <Product
-              key={slug.current}
-              name={title}
-              price={price}
-              slug={slug.current}
-              productImage={productImage}
-              className={{
-                img: "h-[30rem] prXl:h-[26rem] prLg:h-[19rem] prMd:h-[16rem] prSm:h-[28rem]",
-              }}
-            />
+            <Suspense key={_id} fallback={<h1>featured products</h1>}>
+              <Product
+                key={_id}
+                name={productName}
+                price={price}
+                id={_id}
+                productImage={productImage}
+                className={{
+                  img: "h-[30rem] prXl:h-[26rem] prLg:h-[19rem] prMd:h-[16rem] prSm:h-[28rem]",
+                }}
+              />
+            </Suspense>
           );
         })}
       </div>

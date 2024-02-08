@@ -2,28 +2,28 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { RiMenuFill } from "react-icons/ri";
 import { IoPersonOutline } from "react-icons/io5";
-import { userSignUp, pages } from "@/utils/data";
-import { BsCart2 } from "react-icons/bs";
+import { RxPerson } from "react-icons/rx";
+import { FaOpencart } from "react-icons/fa6";
 import image from "../utils/images/gz 3.png";
-import { cn } from "@/components/helpers";
 import { flexBetween } from "@/components/helpers";
 import SearchBox from "./SearchBox";
 import { useState } from "react";
 import AccountModle from "./AccountModle";
-import { LiaHomeSolid } from "react-icons/lia";
-import { CiShop } from "react-icons/ci";
-import { LiaInfoSolid } from "react-icons/lia";
 
 type Props = {};
 
 const Navigation = (props: Props) => {
   const name = useSelector((store: any) => store.appSlice.name);
 
-  const [showAccount, setShowAccount] = useState(true);
+  const { isOpen } = useSelector((store: any) => store.modal);
+
+  const dispatch = useDispatch();
+
+  const [showAccount, setShowAccount] = useState(false);
 
   const pathName = usePathname();
 
@@ -39,9 +39,9 @@ const Navigation = (props: Props) => {
     navShow += " border-b border-clr9";
 
   return (
-    <nav className={navShow}>
+    <nav id="navId" className={navShow}>
       <div
-        className={`grid grid-cols-[auto_1fr_auto] items-center justify-between gap-x-[clamp(5rem,_1rem_+_4vw,_10rem)] scenter ftLg:grid-cols-[max-content_auto] ftLg:gap-y-[1.5rem]`}
+        className={`grid grid-cols-[auto_1fr_auto] items-center justify-between gap-x-[clamp(5rem,_1rem_+_4vw,_10rem)] scenter ftXl:grid-cols-[max-content_1fr] ftLg:gap-y-[1.5rem] hmXl:gap-x-[clamp(1.5rem,_1rem_+_2vw,_8rem)]`}
       >
         <Link href="/" className="h-logo w-max">
           <Image className="h-full w-auto" src={image} alt="logo" />
@@ -49,48 +49,30 @@ const Navigation = (props: Props) => {
 
         <SearchBox placeholder="search Products and categories" />
 
-        <div className={`${flexBetween} gap-[2rem] hmXl:hidden hidden`}>
-          {pages.map((page) => {
-            const { id, link, linkText, pageIcon } = page;
-            return (
-              <Link key={id} href={link} className="">
-                <li
-                  className={`text-[1.4rem] font-semibold flex items-end gap-1`}
-                >
-                  <span className="text-[3rem]">{pageIcon}</span> {linkText}
-                </li>
-              </Link>
-            );
-          })}
-        </div>
-
-        <div className={`${flexBetween} gap-[2rem]`}>
+        <div className={`${flexBetween} gap-[2rem] hmXl:hidden`}>
           {/* signIn and signOut */}
-          <div className="relative hmXl:hidden show-model">
-            <div className={`flex`}>
-              <IoPersonOutline
+          <div className="relative show-model">
+            <div className={`flex cursor-pointer`}>
+              <RxPerson
                 className="text-[3rem] font-semibold"
-                // onMouseEnter={() => setShowAccount(true)}
-                // onMouseLeave={() => setShowAccount(false)}
+                onMouseEnter={() => setShowAccount(true)}
+                onMouseLeave={() => setShowAccount(false)}
               />
               <span
                 className="self-end text-[1.4rem] font-semibold"
-                // onMouseEnter={() => setShowAccount(true)}
-                // onMouseLeave={() => setShowAccount(false)}
+                onMouseEnter={() => setShowAccount(true)}
+                onMouseLeave={() => setShowAccount(false)}
               >
                 Account
               </span>
             </div>
 
-            <AccountModle setShowAccount={setShowAccount} />
+            {showAccount && <AccountModle setShowAccount={setShowAccount} />}
           </div>
           {/* cart */}
-          <Link
-            className="text-[1.4rem] font-semibold  hmXl:hidden"
-            href="/carts"
-          >
+          <Link className="text-[1.4rem] font-semibold" href="/carts">
             <li className="flex items-end relative">
-              <BsCart2 className="text-[3rem] hmMd:text-[2.3rem]" />
+              <FaOpencart className="text-[3rem] hmMd:text-[2.3rem]" />
               <span className="text-[1.4rem] font-semibold hmMd:text-[1.2rem] hmMd:mb-[-0.5rem]">
                 cart
               </span>
@@ -100,7 +82,7 @@ const Navigation = (props: Props) => {
             </li>
           </Link>
 
-          <RiMenuFill className="text-[3.2rem] mb-[-0.5rem] hidden hmXl:block cursor-pointer hmMd:text-[2.5rem]" />
+          {/* <RiMenuFill className="text-[3.2rem] mb-[-0.5rem]  hmXl:block cursor-pointer hmMd:text-[2.5rem]" /> */}
         </div>
       </div>
       <section className="scenter flex justify-center items-center hmXl:hidden">

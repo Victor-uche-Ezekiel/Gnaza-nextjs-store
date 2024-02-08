@@ -17,7 +17,7 @@ function AccountOverView({}: Props) {
           const { title, link, icon } = page;
           return (
             <Link
-              className="text-[1.4rem] p-[2rem_3rem] first:rounded-[8px_8px_0_0] flex items-end gap-[1rem] hmLg:p-[1.5rem]"
+              className="tran text-[1.4rem] p-[2rem_3rem] first:rounded-[8px_8px_0_0] flex items-end gap-[1rem] hmLg:p-[1.5rem] hover:bg-clr1 hover:text-[white]"
               key={id}
               href={link}
             >
@@ -33,7 +33,7 @@ function AccountOverView({}: Props) {
           const { title, link } = page;
           return (
             <Link
-              className="text-[1.4rem] p-[2rem_3rem] first:border-t border-clr9 hmLg:p-[1.5rem]"
+              className="tran text-[1.4rem] p-[2rem_3rem] first:border-t border-clr9 hmLg:p-[1.5rem] hover:bg-clr1 hover:text-[white]"
               key={id}
               href={link}
             >

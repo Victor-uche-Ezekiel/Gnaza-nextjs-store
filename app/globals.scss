@@ -70,6 +70,10 @@ a:active {
   text-decoration: none;
 }
 
+button {
+  text-transform: capitalize;
+}
+
 .scenter {
   width: min(100% - 10rem, 130rem);
   margin-inline: auto;
@@ -92,10 +96,42 @@ a:active {
   transition: var(--transition);
 }
 
-.show-model:hover {
-  .model {
-    display: block;
-    transition: all 0.3s linear;
+// .show-model:hover {
+//   .model {
+//     // display: block;
+//     transition: all 0.3s linear;
+//   }
+// }
+
+.checked {
+  display: flex;
+  align-items: center;
+  &:hover {
+    .input_container {
+      background-color: var(--clr-pry-1);
+    }
+  }
+
+  input {
+    background: none;
+    color: none;
+    border-radius: 50%;
+    font-size: 2rem;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .input_container {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0.5rem;
   }
 }
 
