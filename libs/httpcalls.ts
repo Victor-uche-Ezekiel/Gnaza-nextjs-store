@@ -41,7 +41,7 @@ export const fetchAllProducts = async (
 export const fetchFeaturedProducts = async () => {
   try {
     const res = await fetch(`${api_url}/api/featuredProducts`, {
-      cache: "no-cache",
+      cache: "no-store",
     });
 
     if (!res.ok) {
