@@ -52,83 +52,82 @@ const AllProducts = ({}: Props) => {
     fetchAllProducts(e, r, n, b, a, p, sort, setAllProducts, setIsLoading);
   }, [searchParams]);
 
-  // return (
-  //   <div className="mb-[5rem]">
-  //     <div className="page-banner">
-  //       <ul>
-  //         <li>
-  //           <Link href="/">home</Link>
-  //         </li>
-  //         <li className="text-clr1">Products</li>
-  //       </ul>
-  //     </div>
+  return (
+    <div className="mb-[5rem]">
+      <div className="page-banner">
+        <ul>
+          <li>
+            <Link href="/">home</Link>
+          </li>
+          <li className="text-clr1">Products</li>
+        </ul>
+      </div>
 
-  //     <Banner
-  //       className={{
-  //         img: "w-full h-[30vh] col-start-1 row-start-1 z-[-1]",
-  //         btn: "hidden",
-  //         mb: "mb-[5rem]",
-  //       }}
-  //     />
+      <Banner
+        className={{
+          img: "w-full h-[30vh] col-start-1 row-start-1 z-[-1]",
+          btn: "hidden",
+          mb: "mb-[5rem]",
+        }}
+      />
 
-  //     <div className="page-banner">
-  //       <h2>Products</h2>
-  //     </div>
+      <div className="page-banner">
+        <h2>Products</h2>
+      </div>
 
-  //     <ProductsHeading />
+      <ProductsHeading />
 
-  //     <div className="scenter flex gap-x-[3rem] hmXl:grid-cols-[1fr]">
-  //       <FiltersModal />
-  //       {/*
-  //       {isLoading ? (
-  //         <h1>hello</h1>
-  //       ) : ( */}
-  //       <div className={`scenter1 w-full prXl:gap-[2rem]`}>
-  //         {allProducts.map((product, id) => {
-  //           const { productName, productImage, price, _id } = product;
-  //           return (
-  //             <Product
-  //               key={_id}
-  //               name={productName}
-  //               price={price}
-  //               id={_id}
-  //               productImage={productImage}
-  //               className={{
-  //                 img: "h-[22rem] prXl:h-[26rem] prLg:h-[19rem] prMd:h-[16rem] prSm:h-[28rem]",
-  //               }}
-  //             />
-  //           );
-  //         })}
-  //       </div>
-  //       {/* )} */}
-  //     </div>
+      <div className="scenter flex gap-x-[3rem] hmXl:grid-cols-[1fr]">
+        <FiltersModal />
+        {/* 
+        {isLoading ? (
+          <h1>hello</h1>
+        ) : ( */}
+        <div className={`scenter1 w-full prXl:gap-[2rem]`}>
+          {allProducts.map((product, id) => {
+            const { productName, productImage, price, _id } = product;
+            return (
+              <Product
+                key={_id}
+                name={productName}
+                price={price}
+                id={_id}
+                productImage={productImage}
+                className={{
+                  img: "h-[22rem] prXl:h-[26rem] prLg:h-[19rem] prMd:h-[16rem] prSm:h-[28rem]",
+                }}
+              />
+            );
+          })}
+        </div>
+        {/* )} */}
+      </div>
 
-  //     <section className="w-[20rem] mx-auto mt-[5rem]">
-  //       <div className="flex justify-between text-[1.4rem]">
-  //         <button
-  //           className="border border-clr1 px-[1rem] py-[0.5rem] hover:bg-clr1 hover:text-[white] tran"
-  //           onClick={() =>
-  //             setSearchParams("prev", p, router, createQueryString)
-  //           }
-  //         >
-  //           prev
-  //         </button>
-  //         <h5 className="w-[10rem] flex justify-center border border-[transparent] px-[1rem] py-[0.5rem]">
-  //           page {p}
-  //         </h5>
-  //         <button
-  //           className="border border-clr1 px-[1rem] py-[0.5rem] hover:bg-clr1 hover:text-[white] tran"
-  //           onClick={() =>
-  //             setSearchParams("next", p, router, createQueryString)
-  //           }
-  //         >
-  //           next
-  //         </button>
-  //       </div>
-  //     </section>
-  //   </div>
-  // );
-  return <h1>All Products Page</h1>;
+      <section className="w-[20rem] mx-auto mt-[5rem]">
+        <div className="flex justify-between text-[1.4rem]">
+          <button
+            className="border border-clr1 px-[1rem] py-[0.5rem] hover:bg-clr1 hover:text-[white] tran"
+            onClick={() =>
+              setSearchParams("prev", p, router, createQueryString)
+            }
+          >
+            prev
+          </button>
+          <h5 className="w-[10rem] flex justify-center border border-[transparent] px-[1rem] py-[0.5rem]">
+            page {p}
+          </h5>
+          <button
+            className="border border-clr1 px-[1rem] py-[0.5rem] hover:bg-clr1 hover:text-[white] tran"
+            onClick={() =>
+              setSearchParams("next", p, router, createQueryString)
+            }
+          >
+            next
+          </button>
+        </div>
+      </section>
+    </div>
+  );
 };
 
 export default AllProducts;
