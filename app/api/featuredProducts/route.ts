@@ -12,7 +12,7 @@ export async function GET(request: any, res: NextApiResponse) {
     { $sample: { size: 6 } },
   ]);
 
-  revalidatePath(`${url}/store`);
+  request.revalidatePath(`${url}/store`);
 
   return NextResponse.json(products);
 }
