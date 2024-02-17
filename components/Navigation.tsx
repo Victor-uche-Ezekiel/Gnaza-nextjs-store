@@ -3,9 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-
-import { RiMenuFill } from "react-icons/ri";
-import { IoPersonOutline } from "react-icons/io5";
 import { RxPerson } from "react-icons/rx";
 import { FaOpencart } from "react-icons/fa6";
 import image from "../utils/images/gz 3.png";
@@ -13,16 +10,11 @@ import { flexBetween } from "@/components/helpers";
 import SearchBox from "./SearchBox";
 import { useState } from "react";
 import AccountModle from "./AccountModle";
+import { public_url } from "@/libs/helpers";
 
 type Props = {};
 
 const Navigation = (props: Props) => {
-  const name = useSelector((store: any) => store.appSlice.name);
-
-  const { isOpen } = useSelector((store: any) => store.modal);
-
-  const dispatch = useDispatch();
-
   const [showAccount, setShowAccount] = useState(false);
 
   const pathName = usePathname();
@@ -43,7 +35,7 @@ const Navigation = (props: Props) => {
       <div
         className={`grid grid-cols-[auto_1fr_auto] items-center justify-between gap-x-[clamp(5rem,_1rem_+_4vw,_10rem)] scenter ftXl:grid-cols-[max-content_1fr] ftLg:gap-y-[1.5rem] hmXl:gap-x-[clamp(1.5rem,_1rem_+_2vw,_8rem)]`}
       >
-        <Link href="/" className="h-logo w-max">
+        <Link href={`${public_url}`} className="h-logo w-max">
           <Image className="h-full w-auto" src={image} alt="logo" />
         </Link>
 
@@ -87,15 +79,24 @@ const Navigation = (props: Props) => {
       </div>
       <section className="scenter flex justify-center items-center hmXl:hidden">
         <ul className="flex gap-x-[3rem] text-[1.4rem] mt-[1rem]">
-          <Link className={`flex items-end justify-center`} href="/">
+          <Link
+            className={`flex items-end justify-center`}
+            href={`${public_url}`}
+          >
             {/* <LiaHomeSolid className="text-[3rem]" /> */}
             <span>Home</span>
           </Link>
-          <Link className={`flex items-end justify-center`} href="/store">
+          <Link
+            className={`flex items-end justify-center`}
+            href={`${public_url}/store`}
+          >
             {/* <CiShop className="text-[3rem]" /> */}
             <span>Products</span>
           </Link>
-          <Link className={`flex items-end justify-center`} href="">
+          <Link
+            className={`flex items-end justify-center`}
+            href={`${public_url}/about`}
+          >
             {/* <LiaInfoSolid className="text-[3rem]" /> */}
             <span>About</span>
           </Link>

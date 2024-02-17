@@ -1,6 +1,5 @@
 // fetch all products
-export const api_url = process.env.API_URL;
-export const public_api_url = process.env.NEXT_PUBLIC_API_URL;
+import { url, public_url } from "./helpers";
 
 // All Products Fetch Function
 export const fetchAllProducts = async (
@@ -18,7 +17,7 @@ export const fetchAllProducts = async (
   try {
     setIsLoading(true);
     const res = await fetch(
-      `${public_api_url}/api/products?e=${e}&r=${r}&n=${n}&b=${b}&a=${a}&page=${
+      `${public_url}/api/products?e=${e}&r=${r}&n=${n}&b=${b}&a=${a}&page=${
         p || 1
       }&sort=${sort}`,
       {
@@ -40,8 +39,11 @@ export const fetchAllProducts = async (
 // Featured Products Fetch Function
 export const fetchFeaturedProducts = async () => {
   try {
-    const res = await fetch(`${api_url}/api/featuredProducts`, {
+    const res = await fetch(`${url}/api/featuredProducts`, {
       cache: "no-store",
+      next: {
+        revalidate: 0,
+      },
     });
 
     if (!res.ok) {
@@ -55,7 +57,7 @@ export const fetchFeaturedProducts = async () => {
 
 export const fetchSingleProducts = async (id: string) => {
   try {
-    const res = await fetch(`${api_url}/api/products/${id}`);
+    const res = await fetch(`${url}/api/products/${id}`);
 
     if (!res.ok) {
       throw new Error("failed to fetch data");

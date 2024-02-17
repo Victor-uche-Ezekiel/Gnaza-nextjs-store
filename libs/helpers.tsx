@@ -26,6 +26,9 @@ export const B = "bracelet";
 export const A = "anklechain";
 export const R = "ring";
 
+export const url = process.env.URL;
+export const public_url = process.env.NEXT_PUBLIC_URL;
+
 export const setSearchParams = (
   paramName: string,
   page: any,
