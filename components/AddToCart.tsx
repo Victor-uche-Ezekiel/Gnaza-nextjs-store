@@ -6,7 +6,7 @@ type Props = {
   className: string;
   buttonText: string;
   setIsAdd?: (value: boolean) => void;
-  setCount: (value: number) => void;
+  setCount?: (value: number) => void;
 };
 
 function AddToCart({ className, buttonText, setIsAdd, setCount }: Props) {
@@ -14,7 +14,7 @@ function AddToCart({ className, buttonText, setIsAdd, setCount }: Props) {
     <button
       onClick={() => {
         if (setIsAdd) setIsAdd(true);
-        setCount(1);
+        if (setCount) setCount(1);
       }}
       className={cn("btn", className)}
     >
