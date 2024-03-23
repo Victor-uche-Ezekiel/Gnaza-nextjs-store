@@ -2,9 +2,9 @@ import { A, B, E, N, R } from "@/libs/helpers";
 import connectMongoDB from "@/libs/mongodb";
 import ProductSchema from "@/mongoDbModels/products";
 import { NextApiResponse } from "next";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(request: any, res: NextApiResponse) {
+export async function POST(request: NextRequest, res: NextApiResponse) {
   const { productName, productImage, price, category, featured } =
     await request.json();
 
@@ -21,7 +21,7 @@ export async function POST(request: any, res: NextApiResponse) {
   return NextResponse.json({ message: "Product Created" }, { status: 201 });
 }
 
-export async function GET(request: any) {
+export async function GET(request: NextRequest) {
   const page = request.nextUrl.searchParams.get("page") || 1;
   const newPageValue = Number(page);
   const productsPerPage = 6;
@@ -75,7 +75,7 @@ export async function GET(request: any) {
   return NextResponse.json(products);
 }
 
-export async function DELETE(request: any) {
+export async function DELETE(request: NextRequest) {
   const id = request.nextUrl.searchParams.get("id");
   await connectMongoDB();
   await ProductSchema.findByIdAndDelete(id);

@@ -1,9 +1,13 @@
 import connectMongoDB from "@/libs/mongodb";
 import ProductSchema from "@/mongoDbModels/products";
 import { ObjectId } from "mongodb";
-import { NextResponse } from "next/server";
+import { NextParsedUrlQuery } from "next/dist/server/request-meta";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: any, { params }: any) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
   const { id } = await params;
   await connectMongoDB();
   const products = await ProductSchema.aggregate([

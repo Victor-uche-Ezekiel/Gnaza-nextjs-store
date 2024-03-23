@@ -1,5 +1,6 @@
 // fetch all products
 import { url, public_url } from "./helpers";
+import { ProductType } from "./types";
 
 // All Products Fetch Function
 export const fetchAllProducts = async (
@@ -11,8 +12,8 @@ export const fetchAllProducts = async (
   p: string | null,
   sort: string | null,
 
-  setAllProducts: any,
-  setIsLoading: any
+  setAllProducts: (value: ProductType[]) => void,
+  setIsLoading: (value: boolean) => void
 ) => {
   try {
     setIsLoading(true);
@@ -41,9 +42,6 @@ export const fetchFeaturedProducts = async () => {
   try {
     const res = await fetch(`${url}/api/featuredProducts`, {
       cache: "no-store",
-      next: {
-        revalidate: 0,
-      },
     });
 
     if (!res.ok) {
@@ -57,7 +55,9 @@ export const fetchFeaturedProducts = async () => {
 
 export const fetchSingleProducts = async (id: string) => {
   try {
-    const res = await fetch(`${url}/api/products/${id}`);
+    const res = await fetch(`${url}/api/products/${id}`, {
+      cache: "no-store",
+    });
 
     if (!res.ok) {
       throw new Error("failed to fetch data");

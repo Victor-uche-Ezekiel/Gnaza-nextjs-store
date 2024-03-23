@@ -1,3 +1,5 @@
+import { ROUTER_TYPE } from "next/dist/build/utils";
+
 export const closeSortModel = (setIsSortOpen: (value: boolean) => void) => {
   document.body.addEventListener("click", function (e) {
     const target = e.target as HTMLElement;

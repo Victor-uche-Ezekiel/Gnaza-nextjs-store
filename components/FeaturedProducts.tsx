@@ -3,9 +3,9 @@ import { products } from "@/utils/data";
 
 import Product from "./Product";
 import { cn } from "./helpers";
-import { SingleProduct } from "@/libs/types";
 import { resolve } from "path";
-import { api_url, fetchFeaturedProducts } from "@/libs/httpcalls";
+import { fetchFeaturedProducts } from "@/libs/httpcalls";
+import { ProductType } from "@/libs/types";
 
 type Props = {
   fProductsText: string;
@@ -18,7 +18,7 @@ const FeaturedProducts = async ({
   className,
   pclassName,
 }: Props) => {
-  const allProducts: SingleProduct[] = await fetchFeaturedProducts();
+  const allProducts: ProductType[] = await fetchFeaturedProducts();
 
   return (
     <div className={`${cn("mb", pclassName)}`}>
@@ -32,7 +32,7 @@ const FeaturedProducts = async ({
             <Suspense key={_id} fallback={<h1>featured products</h1>}>
               <Product
                 key={_id}
-                name={productName}
+                productName={productName}
                 price={price}
                 id={_id}
                 productImage={productImage}

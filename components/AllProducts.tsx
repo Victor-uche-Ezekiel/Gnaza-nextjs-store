@@ -8,7 +8,7 @@ import Product from "./Product";
 import Link from "next/link";
 
 import Banner from "./Banner";
-import { SingleProduct } from "@/libs/types";
+import { ProductType } from "@/libs/types";
 import ProductsHeading from "./ProductsHeading";
 import FiltersModal from "./FiltersModal";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -22,7 +22,7 @@ import { IoIosAdd } from "react-icons/io";
 type Props = {};
 
 const AllProducts = ({}: Props) => {
-  const [allProducts, setAllProducts] = useState<SingleProduct[]>([]);
+  const [allProducts, setAllProducts] = useState<ProductType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -84,12 +84,13 @@ const AllProducts = ({}: Props) => {
           <h1>hello</h1>
         ) : ( */}
         <div className={`scenter1 w-full prXl:gap-[2rem]`}>
-          {allProducts.map((product, id) => {
+          {allProducts.map((product) => {
             const { productName, productImage, price, _id } = product;
+
             return (
               <Product
                 key={_id}
-                name={productName}
+                productName={productName}
                 price={price}
                 id={_id}
                 productImage={productImage}

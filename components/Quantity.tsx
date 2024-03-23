@@ -7,13 +7,11 @@ type Props = {
   btn?: string;
   setIsAdd?: (value: boolean) => void;
   count?: number;
-  setCount?: (value: number) => void;
+  setCount?: any | ((value: number) => void);
 };
 
-function Quantity({ className, btn, count, setCount }: Props) {
-  // const handleCount = (num) => {
-  //   setCount?(count? + num<number>);
-  // }
+function Quantity({ className, btn, count, setCount, setIsAdd }: Props) {
+  console.log(count);
 
   return (
     <div
@@ -26,7 +24,17 @@ function Quantity({ className, btn, count, setCount }: Props) {
         className={`${cn(
           "text-[2rem]  w-[2rem] h-[2rem] flex items-center justify-center rounded-full bg-clr9 text-clr4 last:mr-0 cursor-pointer"
         )}`}
-        // onClick={handleCount}
+        onClick={() => {
+          if (setCount)
+            setCount((prevCount: number) => {
+              const newCount = prevCount - 1;
+              if ((newCount as number) < 1) {
+                if (setIsAdd) setIsAdd(false);
+              }
+              return newCount;
+            });
+          // console.log(newCount);
+        }}
       >
         -
       </span>
@@ -42,7 +50,7 @@ function Quantity({ className, btn, count, setCount }: Props) {
         className={`${cn(
           "text-[2rem] w-[2rem] h-[2rem] flex items-center justify-center rounded-full bg-clr9 text-clr4 cursor-pointer"
         )}`}
-        // onClick={handleCount}
+        onClick={() => (setCount ? setCount((count as number) + 1) : null)}
       >
         +
       </span>

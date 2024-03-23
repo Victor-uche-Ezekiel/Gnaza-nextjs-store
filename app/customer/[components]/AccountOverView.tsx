@@ -8,7 +8,6 @@ type Props = {};
 
 function AccountOverView({}: Props) {
   const pathName = usePathname();
-  console.log(pathName);
 
   return (
     <div className=" h-max bg-[#fff] rounded-[8px]">

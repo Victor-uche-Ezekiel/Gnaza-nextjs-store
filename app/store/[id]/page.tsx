@@ -8,6 +8,7 @@ type Props = {
 
 const SingleProduct = ({ params }: Props) => {
   const { id } = params;
+  console.log(params, "single product params");
 
   return (
     <div className="pt">

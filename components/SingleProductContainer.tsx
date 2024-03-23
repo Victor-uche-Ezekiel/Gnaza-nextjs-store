@@ -3,7 +3,7 @@ import React from "react";
 import Quantity from "./Quantity";
 
 import { cn } from "@/components/helpers";
-import { api_url, fetchSingleProducts } from "@/libs/httpcalls";
+import { fetchSingleProducts } from "@/libs/httpcalls";
 
 type Props = {
   id: string;
